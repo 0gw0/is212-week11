@@ -1,23 +1,41 @@
 import unittest
-from ex2_smelly import Shape  # Adjust if the class is in another file
+from ex2_smelly import Circle, Rectangle, Triangle
 
-class TestShape(unittest.TestCase):
 
-    def test_calculate_area_circle(self):
-        # Test for a circle with radius 5
-        result = Shape().calculate_area('circle', radius=5)
+class TestShapes(unittest.TestCase):
+    def test_circle_area(self):
+        # Test circle with radius 5
+        circle = Circle(5)
+        result = circle.calculate_area()
         self.assertAlmostEqual(result, 78.5, places=2)
 
-    def test_calculate_area_rectangle(self):
-        # Test for a rectangle with length 4 and width 6
-        result = Shape().calculate_area('rectangle', length=4, width=6)
+        # Test another radius
+        circle = Circle(3)
+        result = circle.calculate_area()
+        self.assertAlmostEqual(result, 28.26, places=2)
+
+    def test_rectangle_area(self):
+        # Test rectangle 4x6
+        rectangle = Rectangle(4, 6)
+        result = rectangle.calculate_area()
         self.assertEqual(result, 24)
 
-    def test_calculate_area_triangle(self):
-        # Test for a triangle with base 10 and height 8
-        result = Shape().calculate_area('triangle', base=10, height=8)
+        # Test square case
+        rectangle = Rectangle(5, 5)
+        result = rectangle.calculate_area()
+        self.assertEqual(result, 25)
+
+    def test_triangle_area(self):
+        # Test triangle with base 10 and height 8
+        triangle = Triangle(10, 8)
+        result = triangle.calculate_area()
         self.assertEqual(result, 40)
 
+        # Test another triangle
+        triangle = Triangle(6, 4)
+        result = triangle.calculate_area()
+        self.assertEqual(result, 12)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
